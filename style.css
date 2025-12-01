@@ -714,6 +714,8 @@ section#experience {
 
   .about-hero .section__pic-container {
     justify-content: center;
+    flex: unset;
+    width: 100%;
   }
 
   .about-hero .summary-card {
@@ -723,6 +725,10 @@ section#experience {
 }
 
 @media (max-width: 768px) {
+  section {
+    padding: 3rem 6%;
+  }
+
   .contact-container {
     gap: 30px;
   }
@@ -747,11 +753,41 @@ section#experience {
 
   .about-hero {
     align-items: center;
+    gap: 1.5rem;
+    padding: 1.75rem;
+  }
+
+  .summary-card {
+    padding: 1.75rem;
+  }
+
+  .project-writeups,
+  .certifications-container,
+  .cert-gallery,
+  .about-card-container,
+  .experience-card-container,
+  .achievement-card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cert-card,
+  .project-writeups article,
+  .achievement-card,
+  .experience-card {
+    padding: 1.25rem;
+  }
+
+  .cert-gallery figure {
+    padding: 0.75rem;
   }
 }
 
 /* For mobile phones */
 @media (max-width: 480px) {
+  section {
+    padding: 2.5rem 5%;
+  }
+
   .contact-container {
     flex-direction: row;
     flex-wrap: wrap;
@@ -773,6 +809,22 @@ section#experience {
 
   .about-hero {
     padding: 1.5rem;
+  }
+
+  .about-hero .section__pic-container img {
+    max-width: 360px;
+  }
+
+  .summary-card {
+    padding: 1.4rem;
+  }
+
+  .cert-card {
+    padding: 1rem;
+  }
+
+  .cert-gallery figcaption {
+    font-size: 0.85rem;
   }
 }
 
