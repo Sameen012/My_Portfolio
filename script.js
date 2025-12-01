@@ -35,3 +35,12 @@ function type() {
 
 type();
 document.getElementById('year').textContent = new Date().getFullYear();
+
+document.querySelectorAll('.menu-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    const menu = document.querySelector('.menu-links');
+    const icon = document.querySelector('.hamburger-icon');
+    menu.classList.remove('open');
+    icon.classList.remove('open');
+  });
+});
