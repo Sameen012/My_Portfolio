@@ -28,7 +28,7 @@ Personal portfolio for Saminu Aminu highlighting experience in frontend developm
    # Windows PowerShell example
    python -m http.server 5500
    ```
-3. Navigate to `http://localhost:5500/index.html` to preview the site.
+3. Navigate to `https://my-portfolio-5vcx.onrender.com` to preview the site.
 
 ## Customization
 - Replace images inside `assets/` (profile photo, certificate previews, project screenshots) and update the file paths in the HTML files if needed.
