@@ -1,6 +1,6 @@
 # Official_Sameen Portfolio
 
-Personal portfolio for Saminu Aminu highlighting experience in frontend development, cybersecurity, and full-stack projects. The site is built with plain HTML, CSS, and JavaScript, making it easy to deploy on any static host (GitHub Pages, Netlify, Vercel, etc.).
+My Personal portfolio that highlighted my experience in frontend development, cybersecurity, and full-stack projects. The site is built with plain HTML, CSS, and JavaScript, making it easy to deploy on any static host (GitHub Pages, Netlify, Vercel, etc.).
 
 ## Features
 - Animated hero with dynamic role typing and quick access to resume/socials.
@@ -18,7 +18,7 @@ Personal portfolio for Saminu Aminu highlighting experience in frontend developm
 ├── contact.html        # Contact links + Formspree form
 ├── style.css           # Global styling
 ├── script.js           # Typing effect + helpers
-└── assets/             # Images, resume PDF, certificate Image
+└── assets/             # Images, resume PDF, certificates Image
 ```
 
 ## Local Development
