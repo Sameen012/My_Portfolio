@@ -16,6 +16,72 @@ body {
   justify-content: space-between;
 }
 
+:root {
+  --glow-color: #00ffff;
+  --glass-bg: rgba(5, 6, 11, 0.85);
+  --nav-glass: rgba(0, 0, 0, 0.25);
+}
+
+/* === MOTION SYSTEM === */
+@keyframes navDrop {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFloat {
+  0% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+  100% { transform: translateY(4px) scale(1); }
+}
+
+@keyframes portraitPulse {
+  0% { box-shadow: 0 8px 24px rgba(0, 255, 255, 0.08); border-color: rgba(0, 255, 255, 0.2); }
+  50% { box-shadow: 0 14px 32px rgba(0, 255, 255, 0.25); border-color: rgba(0, 255, 255, 0.45); }
+  100% { box-shadow: 0 10px 28px rgba(0, 255, 255, 0.12); border-color: rgba(0, 255, 255, 0.35); }
+}
+
+@keyframes cardPulse {
+  0% { box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25); border-color: rgba(0, 255, 255, 0.08); }
+  50% { box-shadow: 0 35px 55px rgba(0, 0, 0, 0.35); border-color: rgba(0, 255, 255, 0.22); }
+  100% { box-shadow: 0 25px 45px rgba(0, 0, 0, 0.25); border-color: rgba(0, 255, 255, 0.08); }
+}
+
+@keyframes chipGlow {
+  0% { box-shadow: 0 0 0 rgba(0, 255, 255, 0); }
+  50% { box-shadow: 0 0 18px rgba(0, 255, 255, 0.35); }
+  100% { box-shadow: 0 0 0 rgba(0, 255, 255, 0); }
+}
+
+@keyframes buttonShine {
+  0% { box-shadow: 0 0 0 rgba(0, 255, 255, 0); }
+  60% { box-shadow: 0 0 18px rgba(0, 255, 255, 0.5); }
+  100% { box-shadow: 0 0 0 rgba(0, 255, 255, 0); }
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.animate-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .animate-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 h1, h2, h3 {
   font-weight: 600;
 }
@@ -44,6 +110,7 @@ a:hover {
   z-index: 100;
   gap: 1.5rem;
   flex-wrap: wrap;
+  animation: navDrop 0.9s ease-out both;
 }
 
 .logo {
@@ -204,6 +271,19 @@ p {
   box-shadow: 0 0 10px #00ffff;
 }
 
+.contact-submit {
+  width: 100%;
+  margin: 0;
+}
+
+.contact-hint {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  text-align: center;
+}
+
 /* === ICONS === */
 .icon {
   width: 30px;
@@ -234,6 +314,7 @@ p {
   width: 280px;
   padding: 1.2rem;
   transition: 0.3s;
+  animation: cardPulse 14s ease-in-out infinite;
 }
 
 .project-card:hover {
@@ -272,6 +353,7 @@ p {
   padding: 1.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
   border: 1px solid rgba(0, 255, 255, 0.15);
+  animation: cardPulse 16s ease-in-out infinite;
 }
 
 .project-writeups h3 {
@@ -306,6 +388,7 @@ p {
   border: 1px solid rgba(0, 255, 255, 0.2);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   transition: transform 0.3s ease, border-color 0.3s ease;
+  animation: cardPulse 15s ease-in-out infinite;
 }
 
 .cert-card:hover {
@@ -352,6 +435,7 @@ p {
   padding: 1rem;
   border: 1px solid rgba(0, 255, 255, 0.15);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: cardPulse 18s ease-in-out infinite;
 }
 
 .cert-gallery img {
@@ -368,9 +452,132 @@ p {
 }
 
 /* === CONTACT === */
-.contact-container a {
-  color: #00ffff;
-  text-decoration: underline;
+.contact-section {
+  padding: 80px 8%;
+  text-align: center;
+}
+
+.contact-subtitle {
+  max-width: 640px;
+  margin: 0 auto 2.25rem;
+  color: #dbeafe;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.contact-info-card,
+.contact-form {
+  background: rgba(5, 6, 11, 0.85);
+  border-radius: 22px;
+  border: 1px solid rgba(0, 255, 255, 0.08);
+  padding: 1.75rem;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35);
+  text-align: left;
+}
+
+.contact-info-card {
+  animation: cardPulse 12s ease-in-out infinite;
+}
+
+.contact-info-card h3 {
+  color: aqua;
+  margin: 1rem 0 0.4rem;
+}
+
+.contact-info-card p {
+  color: #e2e8f0;
+}
+
+.contact-portrait {
+  width: 90%;
+  max-width: 280px;
+  border-radius: 18px;
+  border: 3px solid rgba(0, 255, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15);
+  display: block;
+  margin: 0 auto 1.25rem;
+  animation: portraitPulse 7s ease-in-out infinite;
+}
+
+.contact-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 255, 255, 0.35);
+  color: #9beefb;
+  font-size: 0.9rem;
+  transition: background 0.25s ease, transform 0.25s ease;
+  animation: chipGlow 5s ease-in-out infinite;
+}
+
+.contact-chip:nth-child(2) {
+  animation-delay: 0.6s;
+}
+
+.contact-chip:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.contact-chip:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.contact-meta-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  color: #d1d5db;
+}
+
+.contact-meta-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.contact-meta-list i {
+  color: aqua;
+}
+
+.contact-social-strip {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.contact-social-strip a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.contact-social-strip a:hover {
+  background: rgba(0, 255, 255, 0.15);
+  transform: translateY(-3px);
 }
 
 /* === FOOTER === */
@@ -448,6 +655,7 @@ section#about {
   object-fit: cover;
   border: 3px solid aqua;
   margin-bottom: 25px;
+  animation: heroFloat 8s ease-in-out infinite;
 }
 
 .section__pic-container img.about-pic,
@@ -503,6 +711,7 @@ section#about {
   max-width: 900px;
   text-align: left;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: cardPulse 18s ease-in-out infinite;
 }
 
 .summary-card h2 {
@@ -525,6 +734,7 @@ section#about {
   text-align: left;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardPulse 17s ease-in-out infinite;
 }
 
 .about-card:hover {
@@ -580,6 +790,7 @@ section#experience {
   text-align: left;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: cardPulse 16s ease-in-out infinite;
 }
 
 .experience-card:hover {
@@ -631,6 +842,7 @@ section#experience {
   text-align: left;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(0, 255, 255, 0.15);
+  animation: cardPulse 19s ease-in-out infinite;
 }
 
 .achievement-card h3 {
@@ -653,54 +865,6 @@ section#experience {
    transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0, 255, 255, 0.2);
 }
-/* ===== CONTACT SECTION ===== */
-.contact-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 40px;
-  text-align: center;
-  color: white;
-  margin-top: 20px;
-  padding: 20px;
-}
-
-/* Stack text and icon vertically */
-.contact-container > * {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Icon styling */
-.contact-container i {
-  display: block;
-  margin-top: 8px;
-  font-size: 2rem;
-  color: cyan;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-/* Hover effect */
-.contact-container i:hover {
-  color: #00ffff;
-  transform: scale(1.2);
-}
-
-/* Links */
-.contact-container a {
-  display: block;
-  color: cyan;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-/* Text (LinkedIn, GitHub, etc.) */
-.contact-container {
-  font-size: 1rem;
-  letter-spacing: 0.5px;
-}
 
 /* ===== RESPONSIVENESS ===== */
 
@@ -721,6 +885,10 @@ section#experience {
   .about-hero .summary-card {
     text-align: left;
     width: 100%;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -755,6 +923,11 @@ section#experience {
     align-items: center;
     gap: 1.5rem;
     padding: 1.75rem;
+  }
+
+  .contact-info-card,
+  .contact-form {
+    padding: 1.5rem;
   }
 
   .summary-card {
@@ -811,6 +984,14 @@ section#experience {
     padding: 1.5rem;
   }
 
+  .contact-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .contact-chip-row {
+    flex-direction: column;
+  }
+
   .about-hero .section__pic-container img {
     max-width: 360px;
   }
@@ -828,51 +1009,65 @@ section#experience {
   }
 }
 
-.connect {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 2rem;
-  padding: 20px;
-}
 
-.cImg img {
-  max-width: 400px;
-  width: 100%;
-  border-radius: 10px;
-}
-
+.connect,
+.cImg,
 .cForm {
-  flex: 1;
-  min-width: 300px;
+  display: none;
 }
 
-form {
+.contact-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: #111;
-  padding: 20px;
-  border-radius: 10px;
-  color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
-}
-
-label {
-  font-weight: 600;
-}
-
-input, textarea {
-  padding: 10px;
+  width: min(420px, 100%);
+  margin: 0 auto;
+  background: transparent;
   border: none;
-  border-radius: 5px;
-  background: #222;
-  color: #fff;
+  box-shadow: none;
+  color: white;
 }
 
-input:focus, textarea:focus {
-  outline: 2px solid aqua;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact-form label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 255, 255, 0.15);
+  background: #0c111c;
+  color: white;
+  font-size: 0.95rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.15);
+}
+
+.contact-form .btn {
+  border-radius: 12px;
+  margin: 0;
 }
 
 .btn {
@@ -884,9 +1079,33 @@ input:focus, textarea:focus {
   padding: 10px;
   cursor: pointer;
   transition: 0.3s;
+  animation: buttonShine 6s ease-in-out infinite;
 }
 
 .btn:hover {
   background: #00cccc;
 }
 
+.my_what_no{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.my_what_no i{
+  font-size: 36px;
+}
+.cForm label{
+  display: flex;
+  justify-content: flex-start;
+}
